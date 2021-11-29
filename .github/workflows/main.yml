@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Git Clone Project
-        run: https://github.com/Auful01/kuis2-cc.git backend
+        run: git clone https://github.com/Auful01/kuis2-cc.git backend
 
       - name: Docker Version
         run: docker version
