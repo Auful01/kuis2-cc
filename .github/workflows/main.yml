@@ -14,7 +14,10 @@ jobs:
 
       - name: Docker Version
         run: docker version
-
+        
+      - name : Docker Build
+        run : Docker build -t Auful01/kuis2-cc .
+        
       - name: Build Docker Images
         run: docker-compose build
 
