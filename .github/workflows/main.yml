@@ -1,9 +1,6 @@
 name: laravel-git-clone
 
-on:
-  pull_request:
-  schedule:
-    - cron:  '0 0 * * *'
+on: push
 
 jobs:
   docker-build:
