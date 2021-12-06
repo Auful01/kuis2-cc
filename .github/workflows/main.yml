@@ -118,9 +118,8 @@ jobs:
             sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
             sudo systemctl restart docker
             sudo apt install firewalld
-            sudo systemctl start firewalld
             sudo systemctl enable firewalld
-            sudo systemctl status firewalld
+            sudo systemctl start firewalld
             sudo firewall-cmd --zone=docker --add-service=http --permanent
             sudo firewall-cmd --reload
             sudo pip3 install docker-compose
