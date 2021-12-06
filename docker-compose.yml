@@ -2,6 +2,7 @@ version: '3.5'
 
 services:
     kuis2-cc:
+        image: auful01/kuis2-cc:latest
         build:
             context: '.'
             args:
