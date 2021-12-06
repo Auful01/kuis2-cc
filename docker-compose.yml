@@ -1,8 +1,7 @@
 version: '3.5'
 
-      
 services:
-     app:
+    app:
         image: auful01/kuis2-cc:latest
         build:
             context: .
