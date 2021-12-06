@@ -1,5 +1,11 @@
 version: '3.5'
 
+
+app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+      
 services:
     kuis2-cc:
         image: auful01/kuis2-cc:latest
