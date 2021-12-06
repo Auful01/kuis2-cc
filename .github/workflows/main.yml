@@ -113,11 +113,11 @@ jobs:
           key: ${{secrets.OCI_INSTANCE_KEY}}
           script: |
             sudo apt-get install -y apt-utils
-            sudo apt-get install curl apt-transport-https ca-certificates software-properties-common
+            sudo apt-get install curl apt-transport-https ca-certificates software-properties-common=yes
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
             sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
             sudo systemctl restart docker
-            sudo apt install firewalld
+            sudo apt install firewalld=yes
             sudo firewall-cmd --zone=docker --add-service=http --permanent
             sudo firewall-cmd --reload
             sudo pip3 install docker-compose
