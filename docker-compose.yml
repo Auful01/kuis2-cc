@@ -5,11 +5,11 @@ services:
         build:
             context: '.'
             args:
-                uid: ${UID}
+                uid: 1000
         container_name: kuis2-cc
         environment:
-            - APACHE_RUN_USER=#${UID}
-            - APACHE_RUN_GROUP=#${UID}
+            - APACHE_RUN_USER=1000
+            - APACHE_RUN_GROUP=1000
         volumes:
             - .:/var/www/html
         ports:
