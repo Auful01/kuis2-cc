@@ -1,16 +1,12 @@
 version: '3.5'
 
-
-app:
-    build:
-      context: app
-      dockerfile: Dockerfile
       
 services:
-    kuis2-cc:
+     app:
         image: auful01/kuis2-cc:latest
         build:
-            context: '.'
+            context: .
+            dockerfile: .docker/Dockerfile
             args:
                 uid: 1000
         container_name: kuis2-cc
