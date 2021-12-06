@@ -117,6 +117,7 @@ jobs:
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
             sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
             sudo systemctl restart docker
+            sudo apt install firewalld
             sudo firewall-cmd --zone=docker --add-service=http --permanent
             sudo firewall-cmd --reload
             sudo pip3 install docker-compose
