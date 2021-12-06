@@ -112,4 +112,5 @@ jobs:
           username: ubuntu
           key: ${{secrets.OCI_INSTANCE_KEY}}
           script: |
+            service docker start
             sudo /usr/local/bin/docker-compose up -d
