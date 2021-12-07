@@ -125,6 +125,6 @@ jobs:
             sudo pip3 install docker-compose
             whereis Dockerfile
             sudo apt install gunzip
-            sudo chmod 775 -R /usr/share/man/man5/Dockerfile.5.gz
+            sudo chmod 775 /usr/share/man/man5/Dockerfile.5.gz
             gunzip /usr/share/man/man5/Dockerfile.5.gz
             sudo /usr/local/bin/docker-compose up -d
