@@ -1,41 +1,39 @@
 version: '3.5'
 
 services:
-    app:
-        image: auful01/kuis2-cc:latest
-        build:
-            context: .
-            dockerfile:  /usr/share/man/man5/Dockerfile
-            args:
-                uid: 1000
-        container_name: kuis2-cc
-        environment:
-            - APACHE_RUN_USER=1000
-            - APACHE_RUN_GROUP=1000
-        volumes:
-            - .:/var/www/html
-        ports:
-            - 8000:80
-        networks:
-            backend:
-                aliases:
-                    - kuis2-cc
+  kusi2-cc:
+    build:
+      context: '.'
+      args:
+        uid: ${UID}
+    container_name: kuis2-cc
+    ports:
+      - 8000:80
+    environment:
+      - APACHE_RUN_USER=#1000
+      - APACHE_RUN_GROUP=#1000
+    volumes:
+      - .:/var/www/html
+    networks:
+      backend:
+        aliases:
+          - app
 
-    mysql-db:
-        image: mysql:5.7
-        container_name: mysql-db
-        volumes:
-            - ./run/var:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=
-            - MYSQL_DATABASE=laravel
-            - MYSQL_USER=root
-            - MYSQL_PASSWORD=
-        networks:
-            backend:
-                aliases:
-                    - db
+  mysql-db:
+    image: mysql:5.7
+    container_name: mysql-db
+    volumes:
+      - ./run/var:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=securerootpassword
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    networks:
+      backend:
+        aliases:
+          - mysql-db
 
 networks:
-    backend:
-        name: backend-network
+  backend:
+    name: backend-network
