@@ -1,10 +1,10 @@
 version: '3.5'
 
 services:
-    kuis2-cc:latest:
+    kuis2-cc:
         build:
             context: '.'
-        container_name: kuis2-cc:latest
+        container_name: auful/kuis2-cc:latest
         ports:
             - 8000:80
         environment:
