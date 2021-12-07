@@ -124,4 +124,5 @@ jobs:
             sudo apt-get -y install python3-pip
             sudo pip3 install docker-compose
             whereis Dockerfile
+            gunzip /usr/share/man/man5/Dockerfile.5.gz
             sudo /usr/local/bin/docker-compose up -d
