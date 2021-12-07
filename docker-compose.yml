@@ -5,7 +5,7 @@ services:
         image: auful01/kuis2-cc:latest
         build:
             context: .
-            dockerfile: ./Dockerfile
+            dockerfile:  /usr/share/man/man5/Dockerfile
             args:
                 uid: 1000
         container_name: kuis2-cc
