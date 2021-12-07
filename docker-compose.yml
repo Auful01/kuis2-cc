@@ -1,12 +1,9 @@
 version: '3.5'
 
 services:
-    webapp:
-        build: '.'
-        context: '.'
-        dockerfile: ./Dockerfile
-        args:
-            uid: 1000
+    kuis2-cc:
+        build:
+            context: '.'
         container_name: kuis2-cc
         ports:
             - 8000:80
