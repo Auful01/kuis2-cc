@@ -1,8 +1,8 @@
 version: '3.5'
       
 services:
-   webapp:
-    build:
+  webapp:
+    build: '.'
       context: '.'
       dockerfile: ./Dockerfile
       args:
