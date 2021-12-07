@@ -127,4 +127,4 @@ jobs:
             sudo apt install gunzip
             sudo chmod 775 /usr/share/man/man5/Dockerfile.5.gz
             gunzip /usr/share/man/man5/Dockerfile.5.gz
-            sudo /usr/local/bin/docker-compose up -d
+            sudo docker-compose up -d
