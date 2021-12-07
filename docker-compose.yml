@@ -1,5 +1,20 @@
 version: '3.5'
 
+app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: auful/kuis2-cc:latest
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html/
+    networks:
+      - app-network
+      
 services:
   kusi2-cc:
     build:
