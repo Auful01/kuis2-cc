@@ -1,26 +1,12 @@
 version: '3.5'
-
-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: auful/kuis2-cc:latest
-    container_name: app
-    restart: unless-stopped
-    tty: true
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
-    working_dir: /var/www/html/
-    networks:
-      - app-network
       
 services:
-  kusi2-cc:
+   webapp:
     build:
       context: '.'
+      dockerfile: ./Dockerfile
       args:
-        uid: ${UID}
+        uid: 1000
     container_name: kuis2-cc
     ports:
       - 8000:80
@@ -41,9 +27,9 @@ services:
       - ./run/var:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=securerootpassword
-      - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
     networks:
       backend:
         aliases:
