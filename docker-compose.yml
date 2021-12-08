@@ -15,18 +15,6 @@ services:
                 aliases:
                     - app
 
-    web_server:
-        image: auful/kuisapp:latest
-        container_name: web_server
-        restart: unless-stopped
-        tty: true
-        ports:
-            - "8003:80"
-        depends_on:
-            - app
-        networks:
-            - app-network
-
     mysql-db:
         image: mysql:5.7
         container_name: mysql-db
