@@ -2,10 +2,8 @@ version: '3.5'
 
 services:
     app:
-        image: php:7.4-apache
+        # image: auful/kuis2-cc:latest
         container_name: app
-        ports:
-            - 8000:80
         environment:
             - APACHE_RUN_USER=#1000
             - APACHE_RUN_GROUP=#1000
@@ -16,6 +14,18 @@ services:
             backend:
                 aliases:
                     - app
+
+    web_server:
+        image: auful/kuis2-cc:latest
+        container_name: web_server
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8003:80"
+        depends_on:
+            - app
+        networks:
+            - app-network
 
     mysql-db:
         image: mysql:5.7
