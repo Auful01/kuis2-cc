@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
     app:
-        # image: auful/kuis2-cc:latest
+        image: auful/kuisapp:latest
         container_name: app
         environment:
             - APACHE_RUN_USER=#1000
@@ -16,7 +16,7 @@ services:
                     - app
 
     web_server:
-        image: auful/kuis2-cc:latest
+        image: auful/kuisapp:latest
         container_name: web_server
         restart: unless-stopped
         tty: true
