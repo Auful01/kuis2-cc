@@ -23,8 +23,8 @@ jobs:
 
       - name : Docker Build
         run : | 
-          docker build -t  ${{ secrets.DOCKERHUB_USERNAME }}/kuis2-cc .
-          docker push ${{ secrets.DOCKERHUB_USERNAME}}/kuis2-cc
+          docker build -t  ${{ secrets.DOCKERHUB_USERNAME }}/kuisapp .
+          docker push ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp
 
       - name: 'Write config'
         run: |
