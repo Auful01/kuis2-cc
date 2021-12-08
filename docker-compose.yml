@@ -5,7 +5,7 @@ services:
         build:
             context: '.'
             args:
-                uid: 100
+                uid: 1000
         container_name: laravel-app
         ports:
             - 8000:80
@@ -26,9 +26,9 @@ mysql-db:
         - ./run/var:/var/lib/mysql
     environment:
         - MYSQL_ROOT_PASSWORD=securerootpassword
-        - MYSQL_DATABASE=${DB_DATABASE}
-        - MYSQL_USER=${DB_USERNAME}
-        - MYSQL_PASSWORD=${DB_PASSWORD}
+        - MYSQL_DATABASE=${{secrets.DB_DATABASE}}
+        - MYSQL_USER=${{secrets.DB_USERNAME}}
+        - MYSQL_PASSWORD=${{secrets.DB_PASSWORD}}
     networks:
         backend:
             aliases:
