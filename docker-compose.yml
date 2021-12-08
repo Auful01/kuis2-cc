@@ -3,7 +3,7 @@ version: '3.5'
 services:
     kuis2-cc:
         image: php:7.4-apache
-        container_name: auful/kuis2-cc:latest
+        container_name: auful/kuis2-cc
         ports:
             - 8000:80
         environment:
