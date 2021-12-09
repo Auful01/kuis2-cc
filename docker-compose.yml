@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3'
 
 services:
     app:
@@ -13,31 +13,24 @@ services:
 
     web_server:
         image: auful/kuisapp-webserver:latest
-        container_name: web_server
+        container_name: webserver
         restart: unless-stopped
         tty: true
         ports:
-            - "8003:80"
+            - "8002:80"
         depends_on:
             - app
         networks:
             - app-network
 
-mysql-db:
-    image: mysql:5.7
-    container_name: mysql-db
-    volumes:
-        - ./run/var:/var/lib/mysql
-    environment:
-        - MYSQL_ROOT_PASSWORD=securerootpassword
-        - MYSQL_DATABASE=${{secrets.DB_DATABASE}}
-        - MYSQL_USER=${{secrets.DB_USERNAME}}
-        - MYSQL_PASSWORD=${{secrets.DB_PASSWORD}}
-    networks:
-        backend:
-            aliases:
-                - mysql-db
+    cache:
+        image: redis:alpine
+        container_name: cache
+        restart: unless-stopped
+        networks:
+            - app-network
 
+#Docker Networks
 networks:
-    backend:
-        name: backend-network
+    app-network:
+        driver: bridge
