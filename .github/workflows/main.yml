@@ -140,4 +140,3 @@ jobs:
             sudo docker exec app /bin/bash -c "echo 'DB_USERNAME=auful' >> .env"
             sudo docker exec app /bin/bash -c "echo 'DB_PASSWORD=ipul@123' >> .env"
             sudo docker exec app /bin/bash -c "echo 'DB_REDIS=cache' >> .env"
-            // sudo docker exec -it kuisapp composer update
