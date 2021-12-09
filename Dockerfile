@@ -60,6 +60,8 @@ RUN chmod -R 755 /var/www/
 RUN chmod -R 755 /var/www/storage
 RUN chmod -R 755 /var/www/bootstrap
 RUN chmod -R 755 /var/www/public
+RUN pwd
+RUN ls -a
 
 RUN composer install
 
