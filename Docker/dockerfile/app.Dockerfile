@@ -56,7 +56,7 @@ RUN chown -R www-data:www-data /var/log/supervisor
 RUN pwd
 RUN composer
 # Install dependency
-RUN composer install
+RUN composer install --ignore-platform-reqs
 
 COPY .env.example /var/www/.env
 RUN chown -R www-data:www-data /var/www/.env
