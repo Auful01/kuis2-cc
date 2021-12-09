@@ -54,7 +54,7 @@ RUN chmod -R 755 /var/www/public
 RUN chown -R www-data:www-data /var/log/supervisor
 
 RUN pwd
-RUN ls -a
+RUN ls -a kuis2-cc/
 # Install dependency
 RUN composer install
 
