@@ -130,7 +130,6 @@ jobs:
             whereis Dockerfile
             sudo docker pull auful/kuisapp-app
             sudo docker pull auful/kuisapp-webserver
-            sudo ls -a
             sudo docker-compose up -d
             sudo docker exec app /bin/bash -c "php artisan key:generate"
             sudo docker exec app /bin/bash -c "echo 'DB_CONNECTION=mysql' >> .env"
