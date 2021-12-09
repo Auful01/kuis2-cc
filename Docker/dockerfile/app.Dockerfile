@@ -35,8 +35,8 @@ RUN pecl install -o -f redis &&  rm -rf /tmp/pear && docker-php-ext-enable redis
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN groupadd -g 1000 www-data
-RUN useradd -u 1000 -ms /bin/bash -g www-data www-data
+# RUN groupadd -g 1000 www-data
+# RUN useradd -u 1000 -ms /bin/bash -g www-data www-data
 
 # Copy project ke dalam container
 COPY . /var/www/
