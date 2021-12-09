@@ -56,8 +56,8 @@ RUN chown -R www-data:www-data /var/log/supervisor
 RUN pwd
 RUN rm -rf bootstrap/cache/*.php
 # Install dependency
-RUN composer update --ignore-platform-reqs
-RUN composer dump-autoload
+RUN composer update
+
 
 COPY .env.example /var/www/.env
 RUN chown -R www-data:www-data /var/www/.env
