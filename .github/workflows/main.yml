@@ -141,4 +141,4 @@ jobs:
             sudo docker exec app /bin/bash -c "echo 'DB_PASSWORD=ipul@123' >> .env"
             sudo docker exec app /bin/bash -c "echo 'DB_REDIS=cache' >> .env"
             sudo docker exec app /bin/bash -c "php artisan config:cache"
-            sudo docker exec app /bin/bash -c "php artisan migrate:fresh"
+            sudo docker exec app /bin/bash -c "php artisan migrate"
