@@ -16,15 +16,18 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Git Clone Project
-        run: git clone https://github.com/Auful01/kuis2-cc.git
+        run: git c        run: git clone https://github.com/Auful01/kuis2-cc.git
 
       - name: Docker Version
         run: docker version
 
       - name : Docker Build
-        run : | 
+        run : |
           docker build -t  ${{ secrets.DOCKERHUB_USERNAME }}/kuisapp .
-          docker push ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp
+          docker tag app ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp-app
+          docker tag webserver ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp-webserver
+          docker push ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp-app
+          docker push ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp-webserver
 
       - name: 'Write config'
         run: |
@@ -128,5 +131,3 @@ jobs:
             sudo ls -a
             sudo docker-compose up -d
             sudo docker exec -it laravel-app composer update
-            sudo docker exec app cp .env.example .env
-            sudo docker exec app php artisan key:generate

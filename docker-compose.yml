@@ -1,23 +1,27 @@
 version: '3.3'
 
 services:
-    laravel-app:
-        build:
-            context: '.'
-            args:
-                uid: 1000
-        container_name: laravel-app
-        ports:
-            - 8000:80
-        environment:
-            - APACHE_RUN_USER=#1000
-            - APACHE_RUN_GROUP=#1000
-        volumes:
-            - .:/var/www/html
+    app:
+        image: auful/kuisapp-app:latest
+        container_name: app
+        restart: unless-stopped
+        tty: true
+        depends_on:
+            - cache
         networks:
-            backend:
-                aliases:
-                    - app
+            - app-network
+
+    web_server:
+        image: auful/kuisapp-webserver:latest
+        container_name: web_server
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8003:80"
+        depends_on:
+            - app
+        networks:
+            - app-network
 
 mysql-db:
     image: mysql:5.7
