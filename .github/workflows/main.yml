@@ -23,7 +23,8 @@ jobs:
 
       - name : Docker Build
         run : |
-          docker build -t  ${{ secrets.DOCKERHUB_USERNAME }}/kuisapp .
+          docker build -f Docker/dockerfile/app.Dockerfile -t app .
+          docker build -f Docker/dockerfile/webserver.Dockerfile -t webserver .
           docker tag app ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp-app
           docker tag webserver ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp-webserver
           docker push ${{ secrets.DOCKERHUB_USERNAME}}/kuisapp-app
