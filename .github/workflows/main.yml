@@ -1,4 +1,4 @@
-name: laravel-git-clone
+name: kosmetik-apps
 
 on: push
 
@@ -14,9 +14,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - uses: actions/checkout@v2
-
-      - name: Git Clone Project
-        run: git clone https://github.com/Auful01/kuis2-cc.git
 
       - name: Docker Version
         run: docker version
@@ -66,24 +63,6 @@ jobs:
             --raw-output \
             )" >> $GITHUB_ENV
 
-#       - name: 'Create Instance'
-#         if: ${{!env.INSTANCE_OCID}}
-#         run: |
-#           echo "INSTANCE_OCID=$( \
-#             oci compute instance launch \
-#             -c ${{secrets.VM_COMPARTMENT_OCID}} \
-#             --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} \
-#             --shape ${{secrets.VM_SHAPE}} \
-#             --shape-config '{"memoryInGBs": 1, "ocpus": 1}' \
-#             --assign-public-ip true \
-#             --display-name cicd-demo \
-#             --image-id ${{secrets.VM_CUSTOM_IMAGE_OCID}} \
-#             --ssh-authorized-keys-file /home/runner/.oci/oci_api_key_public.pem \
-#             --subnet-id ${{secrets.VM_SUBNET_OCID}} \
-#             --wait-for-state RUNNING \
-#             --query "data.id" \
-#             --raw-output \
-#             )" >> $GITHUB_ENV
       - name: 'Get Instance IP'
         run: |
           echo "INSTANCE_IP=$( \
@@ -93,6 +72,7 @@ jobs:
             --raw-output \
             )" >> $GITHUB_ENV
           echo Instance IP: ${{ env.INSTANCE_IP }}
+
       - name: 'Wait for SSH'
         run: |
           while ! nc -w5 -z ${{ env.INSTANCE_IP }} 22; do
@@ -127,17 +107,16 @@ jobs:
             sudo firewall-cmd --reload
             sudo apt-get -y install python3-pip
             sudo pip3 install docker-compose
-            whereis Dockerfile
             sudo docker pull auful/kuisapp-app
             sudo docker pull auful/kuisapp-webserver
             sudo docker-compose up -d
             sudo docker exec app /bin/bash -c "php artisan key:generate"
             sudo docker exec app /bin/bash -c "echo 'DB_CONNECTION=mysql' >> .env"
-            sudo docker exec app /bin/bash -c "echo 'DB_HOST=10.0.0.78' >> .env"
-            sudo docker exec app /bin/bash -c "echo 'DB_PORT=3306' >> .env"
-            sudo docker exec app /bin/bash -c "echo 'DB_DATABASE=laravel' >> .env"
-            sudo docker exec app /bin/bash -c "echo 'DB_USERNAME=auful' >> .env"
-            sudo docker exec app /bin/bash -c "echo 'DB_PASSWORD=Ipul@123' >> .env"
+            sudo docker exec app /bin/bash -c "echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env"
+            sudo docker exec app /bin/bash -c "echo 'DB_PORT=${{ secrets.DB_PORT }}' >> .env"
+            sudo docker exec app /bin/bash -c "echo 'DB_DATABASE=${{ secrets.DB_DATABASE }}' >> .env"
+            sudo docker exec app /bin/bash -c "echo 'DB_USERNAME=${{ secrets.DB_USERNAME }}' >> .env"
+            sudo docker exec app /bin/bash -c "echo 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env"
             sudo docker exec app /bin/bash -c "echo 'DB_REDIS=cache' >> .env"
             sudo docker exec app /bin/bash -c "php artisan config:cache"
             sudo docker exec app /bin/bash -c "php artisan migrate"
